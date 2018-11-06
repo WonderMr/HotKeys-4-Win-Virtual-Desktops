@@ -66,6 +66,8 @@ getSessionId()
 ;
 switchDesktopByNumber(targetDesktop)
 {
+    Send, {ScrollLock}
+    Send, {ScrollLock}
     SetScrollLockState, Off
     ;MsgBox, %state%    
     global CurrentDesktop, DesktopCount

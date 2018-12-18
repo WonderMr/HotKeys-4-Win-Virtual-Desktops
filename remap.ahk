@@ -80,23 +80,26 @@ switchDesktopByNumber(targetDesktop)
         return
     }
     ; Go right until we reach the desktop we want
-    while(CurrentDesktop < targetDesktop) {
-        Gui, Show, w1 h1
-        Send ^#{Right}
-        Gui, Hide
+    Gui, +AlwaysOnTop +Disabled -SysMenu +Owner  ; +Owner avoids a taskbar button.
+    Gui, Show, w1 h1
+    SendInput, {LCtrl Down}
+    SendInput, {LWin Down}
+    while(CurrentDesktop < targetDesktop) {       
+        Send {Right}        
         CurrentDesktop++
         OutputDebug, [right] target: %targetDesktop% current: %CurrentDesktop%
-        Sleep,100
     }
     ; Go left until we reach the desktop we want
     while(CurrentDesktop > targetDesktop) {
         Gui, Show, w1 h1        
-        Send ^#{Left}
+        Send {Left}
         Gui, Hide
         CurrentDesktop--
         OutputDebug, [left] target: %targetDesktop% current: %CurrentDesktop%
-        Sleep,100
     }
+    SendInput, {LWin Up}
+    SendInput, {LCtrl Up}
+    Gui, Hide
     ;Msgbox, %CurrentDesktop%
 }
 ;

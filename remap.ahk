@@ -1,4 +1,6 @@
 #SingleInstance force
+#InstallKeybdHook force
+
 ; Globals
 DesktopCount                =   2                                                                                                       ; Windows starts with 2 desktops at boot
 CurrentDesktop              =   1                                                                                                       ; Desktop count is 1-indexed (Microsoft numbers them this way)
@@ -66,9 +68,13 @@ getSessionId()
 ;
 switchDesktopByNumber(targetDesktop)
 {
+    #UseHook
+    ;Msgbox,"ok"
     Send, {ScrollLock}
     Send, {ScrollLock}
+    Send, {CapsLock}
     SetScrollLockState, Off
+    SetCapsLockState,Off
     ;MsgBox, %state%    
     global CurrentDesktop, DesktopCount
     ; Re-generate the list of desktops and where we fit in that. We do this because
@@ -168,8 +174,8 @@ ScrollLock & Ins::switchDesktopByNumber(CurrentDesktop - 1)
 ;^+7::switchDesktopByNumber(7)
 ;^+8::switchDesktopByNumber(8)
 ;^+9::switchDesktopByNumber(9)
-;^+n::switchDesktopByNumber(CurrentDesktop + 1)
-;^+p::switchDesktopByNumber(CurrentDesktop - 1)
+CapsLock & Right::switchDesktopByNumber(CurrentDesktop + 1)
+CapsLock & Left::switchDesktopByNumber(CurrentDesktop - 1)
 ;^+s::switchDesktopByNumber(CurrentDesktop + 1)
 ;^+a::switchDesktopByNumber(CurrentDesktop - 1)
 ;^+c::createVirtualDesktop()

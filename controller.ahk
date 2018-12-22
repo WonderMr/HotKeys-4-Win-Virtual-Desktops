@@ -17,7 +17,7 @@ If WinActive("ahk_class TscShellContainerClass")
         if (PosY = 0) {
             ; it is fully maximized therefore reload "remap.ahk"
             Run "autohotkey" "remap.ahk"
-            ;Msgbox "Reloaded"
+            ; Msgbox "Reloaded"
             ; wait until window gets deactivated so you don't reload it again.
             WinWaitNotActive, ahk_class TscShellContainerClass
 

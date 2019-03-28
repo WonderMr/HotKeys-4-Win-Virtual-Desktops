@@ -2,11 +2,11 @@
 Run "autohotkey" "remap.ahk"
 
 #Persistent
-SetTimer, ReloadOnRDPMaximized, 500
+SetTimer, ReloadOnRDPMaximized, 100
 return
 
 ReloadOnRDPMaximized:
-Sleep, 1000
+Sleep, 50
 If WinActive("ahk_class TscShellContainerClass")
 {
     WinGet, maxOrMin, MinMax, ahk_class TscShellContainerClass

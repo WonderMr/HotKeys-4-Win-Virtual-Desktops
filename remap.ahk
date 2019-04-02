@@ -70,11 +70,11 @@ switchDesktopByNumber(targetDesktop)
 {
     #UseHook
     ;Msgbox,"ok"
-    Send, {ScrollLock}
-    Send, {ScrollLock}
-    Send, {CapsLock}
+    ;Send, {ScrollLock}
+    SendInput, {ScrollLock UP}
+    SendInput, {CapsLock UP}
     SetScrollLockState, Off
-    SetCapsLockState,Off
+    SetCapsLockState, Off
     ;MsgBox, %state%    
     global CurrentDesktop, DesktopCount
     ; Re-generate the list of desktops and where we fit in that. We do this because
@@ -106,6 +106,10 @@ switchDesktopByNumber(targetDesktop)
     SendInput, {LWin Up}
     SendInput, {LCtrl Up}
     Gui, Hide
+    SendInput, {ScrollLock UP}
+    SendInput, {CapsLock UP}
+    SetScrollLockState, Off
+    SetCapsLockState, Off
     ;Msgbox, %CurrentDesktop%
 }
 ;

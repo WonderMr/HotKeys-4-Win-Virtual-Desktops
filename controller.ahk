@@ -1,5 +1,6 @@
 #SingleInstance force
-Run "autohotkey" "remap.ahk"
+remap_name      =   "remap.ahk"
+Run "autohotkey" %remap_name%
 
 #Persistent
 SetTimer, ReloadOnRDPMaximized, 100
@@ -16,9 +17,8 @@ If WinActive("ahk_class TscShellContainerClass")
 
         if (PosY = 0) {
             ; it is fully maximized therefore reload "remap.ahk"
-            Run "autohotkey" "remap.ahk"
-            ; Msgbox "Reloaded"
-            ; wait until window gets deactivated so you don't reload it again.
+            Run "autohotkey" %remap_name%
+            OutputDebug, "Reloaded"
             WinWaitNotActive, ahk_class TscShellContainerClass
 
         }

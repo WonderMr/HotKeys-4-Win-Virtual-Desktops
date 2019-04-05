@@ -70,6 +70,8 @@ switchDesktopByNumber(targetDesktop,scro)
 {
     if(scro){
         Send, {ScrollLock 2}
+    }else{
+        Send, {CapsLock 2}
     }
     #UseHook
     global CurrentDesktop, DesktopCount

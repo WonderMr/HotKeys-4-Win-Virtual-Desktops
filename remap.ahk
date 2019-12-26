@@ -82,15 +82,18 @@ switchDesktopByNumber(targetDesktop,scro)
     if not(targetDesktop > DesktopCount || targetDesktop < 1) {                                            ; Don't attempt to switch to an invalid desktop                           
         Gui, +AlwaysOnTop +Disabled -SysMenu +Owner                                                         ; Go right until we reach the desktop we want; +Owner avoids a taskbar button.
         Gui, Show, w1 h1
+        Sleep, 30
         SendInput, {LCtrl Down}
         SendInput, {LWin Down}
         while(CurrentDesktop < targetDesktop) {       
-            Send {Right}        
+            Send {Right}
+            Sleep, 30
             CurrentDesktop++
             ;OutputDebug, [right] target: %targetDesktop% current: %CurrentDesktop%
         }    
         while(CurrentDesktop > targetDesktop) {                                                                                                ; Go left until we reach the desktop we want
             Gui, Show, w1 h1        
+            Sleep, 30
             Send {Left}
             CurrentDesktop--
             ;OutputDebug, [left] target: %targetDesktop% current: %CurrentDesktop%
